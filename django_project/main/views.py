@@ -1,31 +1,44 @@
 from django.shortcuts import render
-from .models import User
+from .models import User, Temp
 from django.http import JsonResponse, HttpResponse
-
-import secrets
+import uuid
 
 
 # Create your views here.
 
+# first check if user's phone_number exists
+def is_phone_number_registered(request):
+    phone_number = request.GET.get('phone_number')
+    if phone_number == "":
+        return JsonResponse({
+            'status': 400
+        })
+    else:
+        if User.objects.filter(phone_number=phone_number).exists():
+            return JsonResponse({
+                'isRegistered': True})
+        else:
+            return JsonResponse({
+                'isRegistered': False})
+
+
+# gets phone_number and nickanme and registers the user
 def generate_token(request):
     nickname = request.GET.get('nickname')
     phone_number = request.GET.get('phone_number')
-
     if nickname == "" and phone_number == "":
         return JsonResponse({
             'status': 400
         })
     else:
-        # User.objects.filter(phone_number=phone_number).exists()
-        # return HttpResponse(type(User.objects.filter(phone_number=phone_number).exists()))
-        if User.objects.filter(phone_number=phone_number).exists():
-            return JsonResponse({'result': "phone number is already exist!"})
+        # checks again if phone_number does not exits then try ...
         if User.objects.filter(phone_number=phone_number).exists() == False:
             try:
                 user = User()
                 user.nickname = nickname
                 user.phone_number = phone_number
-                generated_token = secrets.token_hex()
+                # secrets
+                generated_token = uuid.uuid1().hex
                 user.token = generated_token
                 user.save()
                 return JsonResponse(
@@ -36,3 +49,7 @@ def generate_token(request):
                 return JsonResponse(
                     {'status': 500}
                 )
+        else:
+            JsonResponse({
+                'result': 'phone_number exists'
+            })

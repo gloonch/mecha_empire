@@ -47,8 +47,6 @@ class Profile(models.Model):
     score = models.IntegerField(default=0)
     rank = models.IntegerField(default=0)
 
-    def __str__(self):
-        return "id: " + self.id + "rank : "+ self.rank
 
 
 class Bullet(models.Model):

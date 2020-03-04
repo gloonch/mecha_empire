@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7eb1fe7-b991-406c-915b-4e6c1b98ea04" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +32,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="C:/python38/Scripts" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SvnConfiguration">
@@ -48,6 +54,14 @@
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="449" y="175" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.30.1536.834@0.30.1536.834" timestamp="1581585176521" />
+    <state x="482" y="117" key="SettingsEditor" timestamp="1583273956432">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="482" y="117" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1583273956432" />
+    <state x="477" y="275" key="com.intellij.ide.util.TipDialog" timestamp="1583270560092">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="477" y="275" key="com.intellij.ide.util.TipDialog/0.30.1536.834@0.30.1536.834" timestamp="1583270560092" />
     <state x="169" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1581594491108">
       <screen x="0" y="30" width="1536" height="834" />
     </state>

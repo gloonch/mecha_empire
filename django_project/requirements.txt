@@ -1,6 +1,6 @@
 appdirs==1.4.3
 distlib==0.3.0
-Django==2.2
+Django==2.2.10
 filelock==3.0.12
 psycopg2==2.8.4
 pytz==2019.3

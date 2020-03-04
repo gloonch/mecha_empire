@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import User, Temp
+from .models import User
 from django.http import JsonResponse, HttpResponse
 import uuid
 
@@ -53,3 +53,7 @@ def generate_token(request):
             JsonResponse({
                 'result': 'phone_number exists'
             })
+
+    return JsonResponse({
+        'status': 400
+    })

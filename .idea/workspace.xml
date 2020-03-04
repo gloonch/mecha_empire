@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7eb1fe7-b991-406c-915b-4e6c1b98ea04" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_project/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_project/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_project/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -1,66 +1,76 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Event(models.Model):
     id = models.AutoField(primary_key=True, unique=True, null=False)
-    # TODO one to one relation to date collection
-    start_time = models.DateTimeField(auto_created=True, auto_now=True)
-    end_time = models.DateTimeField(auto_created=True, auto_now=True)
+    # TODO this should be a model method that provides a special date pattern
+    start_time = models.TextField(default="00:00:00 00/00/00")
+    end_time = models.TextField(default="00:00:00 00/00/00")
+    is_private = models.IntegerField(default=False)
+    result = models.TextField(default="kir sokhari ba ablimu")
+    mode = models.ForeignKey('Mode', models.DO_NOTHING)
+    # TODO a way to separate team nations
+    # team_nations_a = models.ForeignKey('Nation', models.DO_NOTHING)
+    # team_nations_b = models.ForeignKey('Nation', models.DO_NOTHING)
+    # TODO could not implement these two
+    # robot_to_user_a = models.IntegerField()
+    # robot_to_user_b = models.IntegerField()
 
-    # TODO array field
-    robot_to_user_a = models.Field()
-    robot_to_user_b = models.Field()
-    team_nations = models.Field()
-    is_private = models.BooleanField(default=False)
-    # TODO define on_delete
-    game_mode = models.OneToOneField('GameMode', on_delete=models.CASCADE)
-    result = models.TextField(default="kir")
+    class Meta:
+        db_table = 'event'
+
+
+class Mode(models.Model): # mode is the same GameMode
+    id = models.AutoField(primary_key=True, unique=True, null=False)
+    name = models.TextField(null=False)
+    max_users = models.IntegerField(default=10)
+    max_time = models.IntegerField(default=10)
+
+    class Meta:
+        db_table = 'mode'
+
+
+class Nation(models.Model):
+    id = models.AutoField(primary_key=True, unique=True, null=False)
+    name = models.TextField(default="Red Army")
+    # based on images cached on apk file
+    image_id = models.IntegerField(default=1)
+
+    class Meta:
+        db_table = 'nation'
 
 
 class Robot(models.Model):
     id = models.AutoField(primary_key=True, unique=True, null=False)
     name = models.TextField(default="Jia lissa")
-    # TODO define relation type
-    nation = models.OneToOneField('Nation', on_delete=models.CASCADE)
     weapon_name = models.TextField()
     # these integer fields have a 0 to 10 value
-    attack = models.IntegerField()
-    armor = models.IntegerField()
-    speed = models.IntegerField()
+    attack = models.IntegerField(null=True)
+    armor = models.IntegerField(null=True)
+    speed = models.IntegerField(null=True)
     # not able to implement yet
-    accuracy = models.IntegerField()
-    rate_of_fire = models.IntegerField()
-    max_health = models.IntegerField()
-    current_health = models.IntegerField()  # this field's value changes while user is playing the game
-    max_ammo = models.IntegerField()
-    current_ammo = models.IntegerField()  # this field's value changes while user is playing the game
-    max_clip = models.IntegerField()
-    current_clip = models.IntegerField()  # this field's value changes while user is playing the game
+    accuracy = models.IntegerField(null=True)
+    rate_of_fire = models.IntegerField(null=True)
+    max_health = models.IntegerField(null=True)
+    current_health = models.IntegerField(null=True)  # this field's value changes while user is playing the game
+    max_ammo = models.IntegerField(null=True)
+    current_ammo = models.IntegerField(null=True)  # this field's value changes while user is playing the game
+    max_clip = models.IntegerField(null=True)
+    current_clip = models.IntegerField(null=True)  # this field's value changes while user is playing the game
     # based on images cached on apk file
-    image_id = models.IntegerField()
+    image_id = models.IntegerField(null=True)
+    nation = models.ForeignKey(Nation, models.DO_NOTHING)
+
+    class Meta:
+        db_table = 'robot'
 
 
-class Nation(models.Model):
-    id = models.AutoField(primary_key=True, unique=True, null=False)
-    name = models.TextField(default="Elena Koshka")
-    # based on images cached on apk file
-    image_id = models.IntegerField()
-
-
-class Daate(models.Model):
-    # autoincrement and pk field
-    id = models.AutoField(primary_key=True, unique=True, null=False)
-    year = models.IntegerField()
-    month = models.IntegerField()
-    day = models.IntegerField()
-    hour = models.IntegerField()
-    minute = models.IntegerField()
-
-
-class GameMode(models.Model):
-    id = models.AutoField(primary_key=True, unique=True, null=False)
-    name = models.TextField()
-    max_users = models.IntegerField()
-    max_time = models.IntegerField()
+# this should be a model method :|
+# class Daate(models.Model):
+#     # autoincrement and pk field
+#     id = models.AutoField(primary_key=True, unique=True, null=False)
+#     year = models.IntegerField()
+#     month = models.IntegerField()
+#     day = models.IntegerField()
+#     hour = models.IntegerField()
+#     minute = models.IntegerField()

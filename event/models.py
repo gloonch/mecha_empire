@@ -9,7 +9,7 @@ class Event(models.Model):
     is_private = models.IntegerField(default=False)
     result = models.TextField(default="kir sokhari ba ablimu")
     mode = models.ForeignKey('Mode', models.DO_NOTHING)
-    # TODO a way to separate team nations
+    # TODO a way to separate team nations (if manytomany will work , this separation will be not necessary)
     # team_nations_a = models.ForeignKey('Nation', models.DO_NOTHING)
     # team_nations_b = models.ForeignKey('Nation', models.DO_NOTHING)
     # TODO could not implement these two
@@ -18,6 +18,9 @@ class Event(models.Model):
 
     class Meta:
         db_table = 'event'
+
+    def __str__(self):
+        return self.start_time
 
 
 class Mode(models.Model): # mode is the same GameMode
@@ -29,6 +32,9 @@ class Mode(models.Model): # mode is the same GameMode
     class Meta:
         db_table = 'mode'
 
+    def __str__(self):
+        return self.name
+
 
 class Nation(models.Model):
     id = models.AutoField(primary_key=True, unique=True, null=False)
@@ -38,6 +44,9 @@ class Nation(models.Model):
 
     class Meta:
         db_table = 'nation'
+
+    def __str__(self):
+        return self.name
 
 
 class Robot(models.Model):
@@ -59,10 +68,14 @@ class Robot(models.Model):
     current_clip = models.IntegerField(null=True)  # this field's value changes while user is playing the game
     # based on images cached on apk file
     image_id = models.IntegerField(null=True)
+    # TODO check db_column if it's nation_id or not
     nation = models.ForeignKey(Nation, models.DO_NOTHING)
 
     class Meta:
         db_table = 'robot'
+
+    def __str__(self):
+        return self.name
 
 
 # this should be a model method :|

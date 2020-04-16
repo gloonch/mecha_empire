@@ -70,7 +70,7 @@ class Event(models.Model):
     # game mode defines how much time and robots should've
     mode = models.ForeignKey('Mode', models.DO_NOTHING)
     team_nations = models.ManyToManyField(Nation)
-    # TODO a way to separate team nations if needed to be separated instead ManyToManyField
+    # a way to separate team nations if needed to be separated instead ManyToManyField
     # team_nations_a = models.ForeignKey('Nation', models.DO_NOTHING)
     # team_nations_b = models.ForeignKey('Nation', models.DO_NOTHING)
     # related robots to each team, first five to team1, second five to team2

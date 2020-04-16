@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core import serializers
 from .models import Event, Mode, Nation, Robot
+
+
+# from .serializers import EventSerializer
+
 
 # Create your views here.
 @method_decorator(csrf_exempt)
@@ -43,9 +47,17 @@ def create_event(request):
             })
 
 
+def all_events(request):
+    event = Event.objects.all()
+    event = serializers.serialize('json', event)
+    return HttpResponse(event)
+
+
 def next_seven_days_event(request):
     # TODO
-    return JsonResponse({'result': 200})
+    event = Event.objects.all()
+    event = serializers.serialize('json', event)
+    return HttpResponse(event)
 
 
 def filter_date():

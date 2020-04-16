@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('create_event/', views.create_event, name='create_event'),
+    path('all_events/', views.all_events, name='all_events'),
     path('next_seven_days_event/', views.next_seven_days_event, name='next_seven_days_event'),
     path('filter_date/', views.filter_date, name='filter_date'),
 ]

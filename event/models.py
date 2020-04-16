@@ -1,29 +1,7 @@
 from django.db import models
 
 
-class Event(models.Model):
-    id = models.AutoField(primary_key=True, unique=True, null=False)
-    # TODO this should be a model method that provides a special date pattern
-    start_time = models.TextField(default="00:00:00 00/00/00")
-    end_time = models.TextField(default="00:00:00 00/00/00")
-    is_private = models.IntegerField(default=False)
-    result = models.TextField(default="kir sokhari ba ablimu")
-    mode = models.ForeignKey('Mode', models.DO_NOTHING)
-    # TODO a way to separate team nations (if manytomany will work , this separation will be not necessary)
-    # team_nations_a = models.ForeignKey('Nation', models.DO_NOTHING)
-    # team_nations_b = models.ForeignKey('Nation', models.DO_NOTHING)
-    # TODO could not implement these two
-    # robot_to_user_a = models.IntegerField()
-    # robot_to_user_b = models.IntegerField()
-
-    class Meta:
-        db_table = 'event'
-
-    def __str__(self):
-        return self.start_time
-
-
-class Mode(models.Model): # mode is the same GameMode
+class Mode(models.Model):  # mode is the same GameMode
     id = models.AutoField(primary_key=True, unique=True, null=False)
     name = models.TextField(null=False)
     max_users = models.IntegerField(default=10)
@@ -39,7 +17,7 @@ class Mode(models.Model): # mode is the same GameMode
 class Nation(models.Model):
     id = models.AutoField(primary_key=True, unique=True, null=False)
     name = models.TextField(default="Red Army")
-    # based on images cached on apk file
+    # based on images cached on apk file or static files on the host
     image_id = models.IntegerField(default=1)
 
     class Meta:
@@ -68,7 +46,6 @@ class Robot(models.Model):
     current_clip = models.IntegerField(null=True)  # this field's value changes while user is playing the game
     # based on images cached on apk file
     image_id = models.IntegerField(null=True)
-    # TODO check db_column if it's nation_id or not
     nation = models.ForeignKey(Nation, models.DO_NOTHING)
 
     class Meta:
@@ -78,7 +55,36 @@ class Robot(models.Model):
         return self.name
 
 
-# this should be a model method :|
+
+
+class Event(models.Model):
+    id = models.AutoField(primary_key=True, unique=True, null=False)
+    # TODO this should be a model method that provides a special date pattern
+    start_time = models.TextField(default="00:00:00 00/00/00")
+    end_time = models.TextField(default="00:00:00 00/00/00")
+    created_at = models.DateField(blank=True, null=True, auto_created=True, auto_now=True)
+    # this is for next features
+    is_private = models.IntegerField(default=False)
+    # a contract sentence with Mason Fakhraee
+    result = models.TextField(default="kir sokhari ba ablimu")
+    # game mode defines how much time and robots should've
+    mode = models.ForeignKey('Mode', models.DO_NOTHING)
+    team_nations = models.ManyToManyField(Nation)
+    # TODO a way to separate team nations if needed to be separated instead ManyToManyField
+    # team_nations_a = models.ForeignKey('Nation', models.DO_NOTHING)
+    # team_nations_b = models.ForeignKey('Nation', models.DO_NOTHING)
+    # related robots to each team, first five to team1, second five to team2
+    robot_to_users = models.ManyToManyField(Robot)
+
+    class Meta:
+        db_table = 'event'
+
+    def __str__(self):
+        return self.start_time
+
+
+
+# this should be a views.py method :|
 # class Daate(models.Model):
 #     # autoincrement and pk field
 #     id = models.AutoField(primary_key=True, unique=True, null=False)

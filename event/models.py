@@ -52,7 +52,7 @@ class Robot(models.Model):
         db_table = 'robot'
 
     def __str__(self):
-        return self.name
+        return "{0} {1}".format(self.name, self.nation)
 
 
 
@@ -63,10 +63,10 @@ class Event(models.Model):
     start_time = models.TextField(default="00:00:00 00/00/00")
     end_time = models.TextField(default="00:00:00 00/00/00")
     created_at = models.DateField(blank=True, null=True, auto_created=True, auto_now=True)
+    # a contract sentence with Mason Fakhraee
+    result = models.TextField(default="khoy sokhari ba ablimu")
     # this is for next features
     is_private = models.IntegerField(default=False)
-    # a contract sentence with Mason Fakhraee
-    result = models.TextField(default="kir sokhari ba ablimu")
     # game mode defines how much time and robots should've
     mode = models.ForeignKey('Mode', models.DO_NOTHING)
     team_nations = models.ManyToManyField(Nation)
@@ -80,8 +80,7 @@ class Event(models.Model):
         db_table = 'event'
 
     def __str__(self):
-        return self.start_time
-
+        return "{0} {1}".format(self.mode, self.created_at)
 
 
 # this should be a views.py method :|

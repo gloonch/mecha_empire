@@ -48,14 +48,16 @@ def create_event(request):
 
 
 def all_events(request):
+    # TODO serialize to json objects
     event = Event.objects.all()
     event = serializers.serialize('json', event)
     return HttpResponse(event)
 
 
 def next_seven_days_event(request):
-    # TODO
-    event = Event.objects.all()
+    # TODO serialize to json objects
+    # slices last seven events
+    event = Event.objects.all()[0:7]
     event = serializers.serialize('json', event)
     return HttpResponse(event)
 
